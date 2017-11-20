@@ -11,6 +11,13 @@ export const addUser = (user) => {
   return db(table).insert(user, ['*'])
 }
 
+export const modifyUser = (id, user) => {
+  if(user.password) {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(1))
+  }
+  return db(table).update(user, ['*']).where({id})
+}
+
 export const getAllUser = (opts) => {
   let limit = !isNaN(opts.limit) ? parseInt(opts.limit) : 100
   let offset = !isNaN(opts.offset) ? parseInt(opts.offset) : 0

@@ -33,7 +33,8 @@ let putUserSchema = {
   "properties": {
     "username": {
       "type": "string",
-      "pattern": "[a-zA-Z0-10]6+"
+      "pattern": "[a-zA-Z0-10]",
+      "minLength": 5
     },
     "password": {
       "type": "string",
