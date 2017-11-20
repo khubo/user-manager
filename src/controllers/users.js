@@ -17,3 +17,10 @@ export const getAllUser = (opts) => {
   return db(table).select(['*']).limit(limit).offset(offset)
 }
 
+export const getUser = (id) => {
+  return db(table).select(['username', 'email']).where({id})
+}
+
+export const deleteUser = (id) => {
+  return db(table).where({id}).del()
+}

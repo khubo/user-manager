@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { postValidate } from './validators/users'
-import { addUser, getAllUser } from './controllers/users'
+import { addUser, getAllUser, getUser, deleteUser } from './controllers/users'
 import { success, failure } from './helpers'
 
 let router = Router()
@@ -20,5 +20,18 @@ router.get('/user', (req, res) => {
     .then(data => success(res, data))
     .catch(e => failure(res, error))
 })
+
+router.get('/user/:id', (req, res) => {
+  getUser(req.params.id) 
+    .then(data => success(res, data))
+    .catch(e => failure(res, "Failed retrieving data"))
+})
+
+router.delete('/user/:id', (req, res) => {
+  deleteUser(req.params.id)
+    .then(data => success(res, {}, 204))
+    .catch(e => failure(res, "Failed deleting data"))
+})
+
 
 export default router
