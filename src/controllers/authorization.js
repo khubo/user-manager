@@ -13,7 +13,8 @@ export default (req, res) => {
 
   let credentials = config.user
 
-  if(credentials.username = req.body.username && credentials.password === req.body.password) {
+  if(credentials.username === req.body.username && credentials.password === req.body.password) {
+    console.log(config.user)
     let token = jwt.sign({username: config.user.username}, config.jwtSecret)
     res.set('Authorization', token)
     success(res, "Success")    
