@@ -14,7 +14,7 @@ router.post('/user', (req, res) => {
   }
   addUser(req.body)
     .then(data => success(res, "Added user Successfully"))
-    .catch(error => failure(res, dbErrorMessage))
+    .catch(error => {console.log(error); failure(res, dbErrorMessage)})
 })
 
 router.put('/user/:id', (req, res) => {

@@ -5,7 +5,7 @@ exports.up = function(knex) {
     table.string('username').unique().comment('username')
     table.string('password').comment('password')
     table.string('email').comment('email')
-    table.binary('profile_pic').comment('Profile picture')
+    table.string('profile_pic').comment('Profile picture')
   })
 };
 
