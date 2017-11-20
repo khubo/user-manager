@@ -21,6 +21,10 @@ app.get('/', (req, res) => {  res.send('Impatience is a vice young Jedi') })
 app.post('/authorize', token)
 app.use('/api', [authorize], routes)
 
+app.use(function(req, res) {
+  res.statusCode = 400;
+  res.send("invalid url")
+})
 // knex migration
 db.migrate.latest()
 
