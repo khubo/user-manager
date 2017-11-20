@@ -1,19 +1,28 @@
 import Promise from 'bluebird'
 import db from '../db'
 import bcrypt from 'bcrypt'
+import Buffer from 'buffer'
 
 const table = 'users'
 
 export const addUser = (user) => {
-  let salt = bcrypt.genSaltSync(1)
-  let password = bcrypt.hashSync(user.password, salt)
-  user.password = password
+  if(user.password) {
+    user.password = bcrypt.hashSync(user.password, bcry.genSaltSync(1))
+  }
+  if(user.profilePic) {
+    user.profile_pic = Buffer.from(user.profilePic, 'base64')
+    delete user.profilePic
+  }
   return db(table).insert(user, ['*'])
 }
 
 export const modifyUser = (id, user) => {
   if(user.password) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(1))
+  }
+  if(user.profilePic) {
+    user.profile_pic = Buffer.from(user.profilePic, 'base64')
+    delete user.profilePic
   }
   return db(table).update(user, ['*']).where({id})
 }

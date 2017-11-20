@@ -12,20 +12,19 @@ const app  = express()
 const port = process.env.PORT || 1337
 
 // middlewares
-app.use(json())
+app.use(json({ limit: '2mb'}))
 app.use(logger)
 
 
 // routes
-app.get('/', (req, res) => {
-  res.send('oye, port working fine!')
-})
+app.get('/', (req, res) => {  res.send('Impatience is a vice young Jedi') })
 app.post('/authorize', token)
 app.use('/api', [authorize], routes)
 
-//
+// knex migration
 db.migrate.latest()
 
+// start db
 app.listen(port, () => {
   winston.info(`App started listening on port ${port}`)
 })
