@@ -20,6 +20,7 @@
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
     "knex": "^0.14.1",
+    "mysql": "^2.15.0",
     "winston": "^2.4.0"
   }
 }
